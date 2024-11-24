@@ -66,7 +66,10 @@ class Television:
         Method to show the tv status.
         :return: tv status.
         """
-        power_status = "On" if self.__status else "Off"
-        channel_status = self.__channel if self.__status else "0"
-        volume_status = Television.MIN_VOLUME if self.__muted else self.__volume
+        power_status = str(self.__status)
+        channel_status = str(self.__channel)
+        volume_status = "0" if self.__muted else str(self.__volume)
+
+        if not self.__status: #when tv is off
+            volume_status = str(self.__volume) #keep the last unmuted volume value
         return f"Power = {power_status}, Channel = {channel_status}, Volume = {volume_status}"
